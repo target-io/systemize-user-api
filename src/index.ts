@@ -16,7 +16,7 @@ const db = new DbController();
 middleware.initMiddlewares();
 router.initRoutes();
 middleware.initExceptionMiddlewares();
-listeners.startListening();
+listeners.keepListening();
 
 server.listen(env.server_port, async () => {
   await db.connect();

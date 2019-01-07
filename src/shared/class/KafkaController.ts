@@ -2,6 +2,20 @@ import { KafkaClient, Producer, ConsumerGroup } from 'kafka-node';
 import env from '../../config/env';
 
 export default class KafkaController {
+  // TODO: need to work on topics & groupId
+  public consumerTopics: any = ['message-to-user-topic'];
+
+  public consumerOptions = {
+    host: '127.0.0.1:2181',  // zookeeper host omit if connecting directly to broker (see kafkaHost below)
+    kafkaHost: '127.0.0.1:9092', // connect directly to kafka broker (instantiates a KafkaClient)
+    groupId: 'user-service-group',
+    protocol: ['roundrobin'],
+    fromOffset: 'latest', // default
+    commitOffsetsOnFirstJoin: true, // on the very first time this consumer group subscribes to a topic, record the offset returned in fromOffset (latest/earliest)
+    outOfRangeOffset: 'earliest', // default
+    migrateHLC: false,    // for details please see Migration section below
+    migrateRolling: true,
+  };
 
   constructor() {}
 

@@ -56,4 +56,14 @@ export default class RedisController {
       }
     });
   }
+
+  /**
+   * Create new Redis client for publisher & subscriber
+   *
+   * @returns new redis client
+   * @memberof RedisController
+   */
+  newClient() {
+    return createClient({ url: env.redis_url });
+  }
 }
